@@ -66,7 +66,84 @@ A modern, full-stack e-commerce web application built with React, Redux, Node.js
 
 ✅ Cart slice with add/remove/update
 
-## 📋 Prerequisites
+## � Project Structure
+
+```
+Ecom/
+├── backend/
+│   ├── server.js                 # Express server entry point
+│   ├── package.json             # Backend dependencies
+│   ├── .env                     # Environment variables (not in git)
+│   ├── .env.example             # Environment template
+│   ├── data/
+│   │   └── products.js          # Sample product data (35 items)
+│   ├── middleware/
+│   │   └── errorHandler.js      # Global error handling & 404
+│   ├── models/
+│   │   ├── Product.js           # Product schema
+│   │   └── CartItem.js          # Cart item schema
+│   └── routes/
+│       ├── products.js          # Product routes (GET, seed)
+│       ├── cart.js              # Cart routes (GET, POST, DELETE)
+│       └── checkout.js          # Checkout route (POST)
+├── frontend/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── .env                     # Environment variables (not in git)
+│   ├── .env.example             # Environment template
+│   └── src/
+│       ├── main.jsx             # React entry point
+│       ├── App.jsx              # Main app component
+│       ├── store.js             # Redux store configuration
+│       ├── components/
+│       │   ├── Navbar.jsx       # Navigation with auth
+│       │   ├── ProductsGrid.jsx # Product display
+│       │   ├── CartSidebar.jsx  # Shopping cart
+│       │   ├── CheckoutModal.jsx # Checkout form
+│       │   ├── AuthModal.jsx    # Login/signup
+│       │   └── Footer.jsx       # Site footer
+│       ├── features/
+│       │   ├── products/
+│       │   │   └── productsSlice.js # Products state
+│       │   └── cart/
+│       │       └── cartSlice.js     # Cart state
+│       └── firebase/
+│           └── config.js        # Firebase initialization
+└── README.md
+```
+
+## 🏗️ Architecture
+
+### Backend (Modular MVC Pattern)
+
+- **Routes**: Separated into individual files for better organization
+  - `products.js` - Product listing and seeding
+  - `cart.js` - Cart management (CRUD operations)
+  - `checkout.js` - Order processing and receipt generation
+  
+- **Models**: Mongoose schemas for data validation
+  - `Product` - Product information
+  - `CartItem` - Shopping cart items
+  
+- **Middleware**: Reusable middleware functions
+  - Error handling with detailed error messages
+  - 404 route handler
+  - Environment-aware error responses
+  
+- **Data**: Centralized data management
+  - Sample products exported from `data/products.js`
+  - 35 products with real Unsplash images
+
+### Frontend (React + Redux)
+
+- **Component-Based Architecture**: Reusable React components
+- **State Management**: Redux Toolkit with slices
+- **Async Operations**: Redux Thunks for API calls
+- **Styling**: Tailwind CSS with custom animations
+- **Authentication**: Firebase integration with protected routes
+
+## �📋 Prerequisites
 
 ## Quick Start
 
