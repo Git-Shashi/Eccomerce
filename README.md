@@ -1,54 +1,31 @@
-# Ecom Store - Full Stack E-Commerce Application# Ecom — Full-Stack Shopping Cart with Firebase Authentication
+# Ecom Store - Full Stack E-Commerce Application
 
+A modern, full-stack e-commerce web application built with React, Redux, Node.js, Express, MongoDB, and Firebase Authentication. Features a beautiful Tailwind CSS UI with **real product data from Fake Store API**.
 
+![E-Commerce Store](https://img.shields.io/badge/Stack-MERN-green) ![Firebase](https://img.shields.io/badge/Auth-Firebase-orange) ![Tailwind](https://img.shields.io/badge/UI-Tailwind-blue) ![API](https://img.shields.io/badge/Data-FakeStoreAPI-purple)
 
-A modern, full-stack e-commerce web application built with React, Redux, Node.js, Express, MongoDB, and Firebase Authentication. Features a beautiful Tailwind CSS UI with 35+ products across multiple categories.This repository contains a complete full-stack shopping cart application named "Ecom" with Firebase authentication.
+## ✨ Features
 
-
-
-![E-Commerce Store](https://img.shields.io/badge/Stack-MERN-green) ![Firebase](https://img.shields.io/badge/Auth-Firebase-orange) ![Tailwind](https://img.shields.io/badge/UI-Tailwind-blue)## Overview
-
-
-
-## ✨ Features- **Backend:** Node.js + Express + Mongoose (MongoDB) - ES Modules
-
-- **Frontend:** React + Vite + Redux Toolkit + Tailwind CSS
-
-- 🛍️ **Product Catalog**: Browse 35+ products across categories (Watches, Laptops, Phones, Clothing, Accessories)- **Authentication:** Firebase (Email/Password + Google Sign-In)
-
-- 🛒 **Shopping Cart**: Add, update, and remove items with real-time cart updates- **Database:** MongoDB Atlas
-
+- 🛍️ **Dynamic Product Catalog**: 20 real products from [Fake Store API](https://fakestoreapi.com) across multiple categories
+- 🛒 **Shopping Cart**: Add, update, and remove items with real-time cart updates
 - 🔐 **Firebase Authentication**: Sign up/Sign in with email/password or Google account
-
-- 💳 **Checkout System**: Complete orders with receipt generation## Features
-
-- 💰 **Indian Rupee (₹) Pricing**: All prices displayed in INR
-
-- 📱 **Responsive Design**: Mobile-first design with Tailwind CSS### Backend
-
-- 🎨 **Modern UI**: Beautiful animations and hover effects✅ RESTful API with 5 endpoints
-
-- 👤 **User Profile**: User menu with profile management✅ MongoDB integration with Mongoose
-
-- 📊 **Redux State Management**: Centralized state for products and cart✅ Auto-seeding with 8 products (Unsplash images)
-
-✅ ES6 modules (import/export)
+- 💳 **Checkout System**: Complete orders with receipt generation
+- 💰 **Indian Rupee (₹) Pricing**: Automatic USD to INR conversion
+- 📱 **Responsive Design**: Mobile-first design with Tailwind CSS
+- 🎨 **Modern UI**: Beautiful animations and hover effects
+- 👤 **User Profile**: User menu with profile management
+- 📊 **Redux State Management**: Centralized state for products and cart
+- 🔄 **Auto-Seeding**: Automatically fetches and seeds products from Fake Store API on first run
 
 ## 🚀 Tech Stack
 
 ### Frontend
 
-### Frontend✅ Modern UI with Tailwind CSS
-
-- **React 18.2.0** - UI library✅ Responsive product grid with hover effects
-
-- **Redux Toolkit 1.9.5** - State management✅ Sliding cart sidebar
-
-- **Vite 5.0.0** - Build tool and dev server✅ Checkout modal with receipt
-
-- **Tailwind CSS 4.1.17** - Styling✅ Firebase Authentication:
-
-- **Firebase 12.5.0** - Authentication  - Email/Password sign up/sign in
+- **React 18.2.0** - UI library
+- **Redux Toolkit 1.9.5** - State management
+- **Vite 5.0.0** - Build tool and dev server
+- **Tailwind CSS 4.1.17** - Styling
+- **Firebase 12.5.0** - Authentication
 
   - Google authentication
 
@@ -76,14 +53,14 @@ Ecom/
 │   ├── .env                     # Environment variables (not in git)
 │   ├── .env.example             # Environment template
 │   ├── data/
-│   │   └── products.js          # Sample product data (35 items)
+│   │   └── products.js          # [DEPRECATED] Legacy static data
 │   ├── middleware/
 │   │   └── errorHandler.js      # Global error handling & 404
 │   ├── models/
-│   │   ├── Product.js           # Product schema
+│   │   ├── Product.js           # Product schema (with category field)
 │   │   └── CartItem.js          # Cart item schema
 │   └── routes/
-│       ├── products.js          # Product routes (GET, seed)
+│       ├── products.js          # Product routes (GET, seed from Fake Store API)
 │       ├── cart.js              # Cart routes (GET, POST, DELETE)
 │       └── checkout.js          # Checkout route (POST)
 ├── frontend/
@@ -118,12 +95,12 @@ Ecom/
 ### Backend (Modular MVC Pattern)
 
 - **Routes**: Separated into individual files for better organization
-  - `products.js` - Product listing and seeding
+  - `products.js` - Fetches products from **Fake Store API** and seeds database
   - `cart.js` - Cart management (CRUD operations)
   - `checkout.js` - Order processing and receipt generation
   
 - **Models**: Mongoose schemas for data validation
-  - `Product` - Product information
+  - `Product` - Product information (name, description, price, imageUrl, category)
   - `CartItem` - Shopping cart items
   
 - **Middleware**: Reusable middleware functions
@@ -131,9 +108,11 @@ Ecom/
   - 404 route handler
   - Environment-aware error responses
   
-- **Data**: Centralized data management
-  - Sample products exported from `data/products.js`
-  - 35 products with real Unsplash images
+- **Data Source**: Dynamic product data
+  - Products fetched from [Fake Store API](https://fakestoreapi.com)
+  - Automatic seeding on first run
+  - Manual re-seeding via `/api/products/seed` endpoint
+  - Prices automatically converted from USD to INR (₹)
 
 ### Frontend (React + Redux)
 
@@ -568,7 +547,51 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 👨‍💻 Author
+## � Screenshots
+
+### Product Listing Page
+![Product Grid](./screenshots/products-grid.png)
+*Browse 20 products from Fake Store API with responsive grid layout*
+
+### Shopping Cart
+![Cart Sidebar](./screenshots/cart-sidebar.png)
+*Real-time cart updates with quantity controls and total calculation*
+
+### Checkout Form
+![Checkout Form](./screenshots/checkout-form.png)
+*Simple checkout with name and email validation*
+
+### Order Receipt
+![Receipt Modal](./screenshots/receipt-modal.png)
+*Order confirmation with unique order ID and itemized receipt*
+
+### Mobile Responsive
+![Mobile View](./screenshots/mobile-responsive.png)
+*Fully responsive design works seamlessly on all devices*
+
+### Firebase Authentication
+![Auth Modal](./screenshots/auth-modal.png)
+*Secure sign-in with email/password or Google authentication*
+
+> **Note:** Take screenshots of your running application and add them to the `/screenshots` folder. 
+> Use browser dev tools (Cmd+Shift+4 on Mac, Windows+Shift+S on Windows) to capture these screens.
+
+---
+
+## 🎥 Demo Video
+
+**Watch the full demo:** [Add your Loom/YouTube link here]
+
+### Quick Demo Steps:
+1. Browse products from Fake Store API
+2. Add items to cart with quantity selection
+3. Update quantities and remove items
+4. Complete checkout with name/email
+5. View receipt with order details
+
+---
+
+## �👨‍💻 Author
 
 **Shashi Bhushan**
 - GitHub: [@Git-Shashi](https://github.com/Git-Shashi)
@@ -576,9 +599,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 🙏 Acknowledgments
 
-- Product images from [Unsplash](https://unsplash.com)
+- Product data from [Fake Store API](https://fakestoreapi.com)
 - Icons and UI inspiration from modern e-commerce platforms
-- Built as part of Vibe Commerce internship assignment
+- Built as part of **Vibe Commerce Full Stack Coding Assignment**
 
 ---
 
